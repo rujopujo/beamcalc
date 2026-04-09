@@ -1,0 +1,6 @@
+streamlit
+numpy
+sympy
+matplotlib
+plotly
+fpdf2
