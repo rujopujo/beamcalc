@@ -1,0 +1,156 @@
+# PyBeam — Beam Analysis Tool
+
+> A professional structural engineering web app for computing and visualizing shear force, bending moment, and beam deflection — built with Python and Streamlit.
+
+**Live Demo:** [beamcalcpy.streamlit.app](https://beamcalcpy.streamlit.app/)
+
+---
+
+## What is PyBeam?
+
+PyBeam is an interactive beam analysis tool designed for mechanical and civil engineering students and professionals. It automates the core structural calculations that would otherwise require manual statics work — shear force, bending moment, and deflection — and presents them through clean, interactive visualizations.
+
+You can configure any beam with custom loads and instantly see the SFD, BMD, and deflection curve update in real time.
+
+---
+
+## Features
+
+- **Beam Schematic Visualizer** — draws the beam with support symbols, point load arrows, and UDL hatching
+- **Shear Force Diagram (SFD)** — computed numerically using NumPy across 1000 points
+- **Bending Moment Diagram (BMD)** — integrated from shear force distribution
+- **Deflection Curve** — solved symbolically using SymPy with boundary conditions applied
+- **Interactive Plotly Charts** — hover over any point to see exact values (position, force, moment, deflection)
+- **Animated Result Cards** — max shear, max moment, max deflection, reaction forces with count-up animation
+- **PDF Report Export** — one-click download of a full report including beam schematic, loads table, and all diagrams
+- **Support Types** — Simply Supported and Cantilever
+- **Multiple Loads** — add any number of Point Loads and UDLs, remove individually
+- **Apple-inspired UI** — clean light theme, frosted glass sidebar, smooth CSS animations
+
+---
+
+## Tech Stack
+
+| Library | Purpose |
+|---|---|
+| `Streamlit` | Web UI framework |
+| `NumPy` | Numerical SFD/BMD computation |
+| `SymPy` | Symbolic deflection solving |
+| `Matplotlib` | Beam schematic + PDF chart rendering |
+| `Plotly` | Interactive SFD/BMD/deflection charts |
+| `fpdf2` | PDF report generation |
+
+---
+
+## How It Works
+
+### 1. Support Reactions
+Static equilibrium equations are solved to find vertical reactions at supports:
+- **Simply Supported:** Sum of forces and moments → R_A and R_B
+- **Cantilever:** Fixed at x=0, R_A = total applied load
+
+### 2. Shear Force Diagram
+NumPy evaluates shear force at 1000 evenly spaced points along the beam by summing all forces to the left of each point.
+
+### 3. Bending Moment Diagram
+The moment at each point is obtained by numerically integrating the shear force using cumulative summation (`np.cumsum`).
+
+### 4. Deflection
+SymPy builds a symbolic expression for M(x) using Macaulay's method (Piecewise functions), then double-integrates to get deflection:
+
+```
+EI · d²y/dx² = M(x)
+```
+
+Integration constants C1 and C2 are solved using boundary conditions:
+- Simply Supported: y(0) = 0, y(L) = 0
+- Cantilever: y(0) = 0, y'(0) = 0
+
+---
+
+## Sign Convention
+
+| Quantity | Positive Direction |
+|---|---|
+| Loads | Downward |
+| Shear Force | Left face upward |
+| Bending Moment | Sagging (concave up) |
+| Deflection | Downward |
+
+---
+
+## Running Locally
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/rujopujo/beamcalc.git
+cd beamcalc
+```
+
+**2. Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+**3. Run the app**
+```bash
+streamlit run app.py
+```
+
+The app opens automatically at `http://localhost:8501`
+
+---
+
+## Project Structure
+
+```
+beamcalc/
+├── app.py              # Full application (UI + all computation logic)
+├── requirements.txt    # Python dependencies
+└── README.md           # Project documentation
+```
+
+### Functions in `app.py`
+
+| Function | Description |
+|---|---|
+| `validate_inputs()` | Checks all inputs before running analysis |
+| `compute_reactions()` | Calculates support reactions via equilibrium |
+| `compute_sfd()` | Returns shear force array using NumPy |
+| `compute_bmd()` | Returns bending moment array via integration |
+| `compute_deflection()` | Returns deflection array using SymPy |
+| `draw_beam_visualizer()` | Renders beam schematic with Matplotlib |
+| `plot_results_plotly()` | Builds 3 interactive Plotly subplots |
+| `generate_pdf()` | Exports full PDF report using fpdf2 |
+
+---
+
+## Usage Guide
+
+1. **Set beam length** and **support type** in the sidebar
+2. **Enter material properties** — Young's Modulus E (GPa) and Moment of Inertia I (cm⁴)
+3. **Add loads** — Point Loads (position + magnitude) and/or UDLs (intensity + range)
+4. Click **Analyze Beam**
+5. View the beam schematic, result cards, and interactive diagrams
+6. Click **Download PDF Report** to export results
+
+---
+
+## Example Input
+
+| Parameter | Value |
+|---|---|
+| Beam Length | 5 m |
+| Support Type | Simply Supported |
+| E | 200 GPa (Steel) |
+| I | 8000 cm⁴ |
+| Point Load | 10 kN at 2.5 m |
+| UDL | 5 kN/m over full span |
+
+---
+
+## Author
+
+**Ruhaan Joshi**
+[ruhaanjoshi2006@gmail.com](mailto:ruhaanjoshi2006@gmail.com)
+GitHub: [rujopujo](https://github.com/rujopujo)
