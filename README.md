@@ -1,4 +1,4 @@
-# PyBeam — Beam Analysis Tool
+# BeamCalc — Beam Analysis Tool
 
 > A professional structural engineering web app for computing and visualizing shear force, bending moment, and beam deflection — built with Python and Streamlit.
 
@@ -6,9 +6,9 @@
 
 ---
 
-## What is PyBeam?
+## What is BeamCalc?
 
-PyBeam is an interactive beam analysis tool designed for mechanical and civil engineering students and professionals. It automates the core structural calculations that would otherwise require manual statics work — shear force, bending moment, and deflection — and presents them through clean, interactive visualizations.
+BeamCalc is an interactive beam analysis tool designed for mechanical and civil engineering students and professionals. It automates the core structural calculations that would otherwise require manual statics work — shear force, bending moment, and deflection — and presents them through clean, interactive visualizations.
 
 You can configure any beam with custom loads and instantly see the SFD, BMD, and deflection curve update in real time.
 
@@ -149,8 +149,3 @@ beamcalc/
 
 ---
 
-## Author
-
-**Ruhaan Joshi**
-[ruhaanjoshi2006@gmail.com](mailto:ruhaanjoshi2006@gmail.com)
-GitHub: [rujopujo](https://github.com/rujopujo)
