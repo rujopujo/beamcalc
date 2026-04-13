@@ -160,14 +160,6 @@ beamcalc/
 
 ---
 
-## Author
-
-**Ruhaan Joshi**
-[ruhaanjoshi2006@gmail.com](mailto:ruhaanjoshi2006@gmail.com)
-GitHub: [rujopujo](https://github.com/rujopujo)
-
----
-
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
