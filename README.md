@@ -153,9 +153,10 @@ beamcalc/
 
 | Name | Role |
 |---|---|
-| **Ruhaan Joshi** | Creator & Lead Developer |
+| **Ruhaan Joshi** | Contributor |
 | **Rudra Jain** | Contributor |
 | **Aarush Nalavade** | Contributor |
+| **Varun Singh** | Contributor |
 
 ---
 
