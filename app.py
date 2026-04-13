@@ -10,6 +10,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from fpdf import FPDF
 
+_VERSION = "1.0.0"
 _N_POINTS = 1000  # number of evaluation points along the beam
 
 # ─────────────────────────────────────────────
