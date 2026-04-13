@@ -13,6 +13,18 @@ from fpdf import FPDF
 _VERSION = "1.0.0"
 _N_POINTS = 1000  # number of evaluation points along the beam
 
+# ── Shared color palette ──
+_CLR_BLUE   = '#0071e3'
+_CLR_RED    = '#ff3b30'
+_CLR_GREEN  = '#34c759'
+_CLR_ORANGE = '#ff9500'
+_CLR_PURPLE = '#af52de'
+_CLR_TEAL   = '#5ac8fa'
+_CLR_GRAY   = '#6e6e73'
+_CLR_LGRAY  = '#d1d1d6'
+_CLR_TEXT   = '#1d1d1f'
+_CLR_GRID   = '#f0f0f0'
+
 # ─────────────────────────────────────────────
 #  APPLE CSS
 # ─────────────────────────────────────────────
@@ -455,12 +467,12 @@ def draw_beam_visualizer(beam_length, support_type, point_loads, udl_loads):
 
     BEAM_Y    = 0.0
     BEAM_H    = 0.22
-    BLUE      = '#0071e3'
-    RED       = '#ff3b30'
-    ORANGE    = '#ff9500'
-    GREEN     = '#34c759'
-    GRAY      = '#6e6e73'
-    LGRAY     = '#d1d1d6'
+    BLUE      = _CLR_BLUE
+    RED       = _CLR_RED
+    ORANGE    = _CLR_ORANGE
+    GREEN     = _CLR_GREEN
+    GRAY      = _CLR_GRAY
+    LGRAY     = _CLR_LGRAY
 
     # ── Beam body ──
     beam_rect = mpatches.FancyBboxPatch(
@@ -541,14 +553,14 @@ def draw_beam_visualizer(beam_length, support_type, point_loads, udl_loads):
 
 def plot_results_plotly(x, shear, moment, x_def, deflection):
     """Build and return an interactive Plotly figure with SFD, BMD, and deflection subplots."""
-    BLUE   = '#0071e3'
-    RED    = '#ff3b30'
-    GREEN  = '#34c759'
-    PURPLE = '#af52de'
-    ORANGE = '#ff9500'
-    GRID   = '#f0f0f0'
-    TEXT   = '#1d1d1f'
-    SUB    = '#6e6e73'
+    BLUE   = _CLR_BLUE
+    RED    = _CLR_RED
+    GREEN  = _CLR_GREEN
+    PURPLE = _CLR_PURPLE
+    ORANGE = _CLR_ORANGE
+    GRID   = _CLR_GRID
+    TEXT   = _CLR_TEXT
+    SUB    = _CLR_GRAY
 
     fig = make_subplots(
         rows=3, cols=1, shared_xaxes=False,
@@ -658,7 +670,7 @@ def generate_pdf(beam_length, support_type, E_GPa, I_cm4,
                  x, shear, moment, x_def, deflection):
     """Generate and return the bytes of a PDF report containing results and diagrams."""
     # Build matplotlib figure for PDF (white, clean)
-    BLUE, GREEN, ORANGE = '#0071e3', '#34c759', '#ff9500'
+    BLUE, GREEN, ORANGE = _CLR_BLUE, _CLR_GREEN, _CLR_ORANGE
     fig_pdf, axes = plt.subplots(3, 1, figsize=(8, 10))
     fig_pdf.patch.set_facecolor('white')
     fig_pdf.subplots_adjust(hspace=0.45)
