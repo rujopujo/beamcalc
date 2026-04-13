@@ -12,7 +12,8 @@ from fpdf import FPDF
 
 _VERSION = "1.0.0"
 _N_POINTS = 1000  # number of evaluation points along the beam
-_PDF_DPI = 150    # raster resolution for charts embedded in the PDF report
+_PDF_DPI = 150            # raster resolution for charts embedded in the PDF report
+_COUNTER_DURATION_MS = 1200  # duration of the count-up animation in milliseconds
 
 # ── Shared color palette ──
 _CLR_BLUE   = '#0071e3'
@@ -328,7 +329,7 @@ def counter_js(values_dict):
             if (!el) return;
             var target = {target};
             var decimals = {decimals};
-            var duration = 1200;
+            var duration = {_COUNTER_DURATION_MS};
             var start = null;
             function step(ts) {{
                 if (!start) start = ts;
