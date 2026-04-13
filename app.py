@@ -334,6 +334,7 @@ def counter_js(values_dict):
 # ─────────────────────────────────────────────
 
 def validate_inputs(beam_length, E_GPa, I_cm4, point_loads, udl_loads):
+    """Return a list of error strings for any invalid beam configuration inputs."""
     errors = []
     if beam_length <= 0:   errors.append("Beam length must be greater than 0.")
     if E_GPa <= 0:         errors.append("Young's Modulus (E) must be greater than 0.")
@@ -356,6 +357,7 @@ def validate_inputs(beam_length, E_GPa, I_cm4, point_loads, udl_loads):
 # ─────────────────────────────────────────────
 
 def compute_reactions(beam_length, support_type, point_loads, udl_loads):
+    """Compute vertical support reactions using static equilibrium."""
     total_force, total_moment = 0.0, 0.0
     for pos, mag in point_loads:
         total_force += mag;  total_moment += mag * pos
@@ -375,6 +377,7 @@ def compute_reactions(beam_length, support_type, point_loads, udl_loads):
 # ─────────────────────────────────────────────
 
 def compute_sfd(beam_length, support_type, point_loads, udl_loads, R_A, R_B, n=1000):
+    """Return (x, shear) arrays representing the shear force diagram."""
     x = np.linspace(0, beam_length, n)
     shear = np.full(n, R_A)
     for pos, mag in point_loads:
@@ -390,6 +393,7 @@ def compute_sfd(beam_length, support_type, point_loads, udl_loads, R_A, R_B, n=1
 
 
 def compute_bmd(x, shear):
+    """Return (x, moment) arrays by numerically integrating the shear force."""
     dx = x[1] - x[0]
     moment = np.cumsum(shear) * dx
     moment[0] = 0.0
@@ -401,6 +405,7 @@ def compute_bmd(x, shear):
 # ─────────────────────────────────────────────
 
 def compute_deflection(beam_length, support_type, point_loads, udl_loads, R_A, E_Pa, I_m4, n=1000):
+    """Return (x, deflection) arrays using SymPy double-integration with boundary conditions."""
     xi = symbols('xi')
     EI = E_Pa * I_m4
     M_expr = R_A * xi
@@ -437,6 +442,7 @@ def compute_deflection(beam_length, support_type, point_loads, udl_loads, R_A, E
 # ─────────────────────────────────────────────
 
 def draw_beam_visualizer(beam_length, support_type, point_loads, udl_loads):
+    """Render a Matplotlib schematic of the beam with supports and applied loads."""
     fig, ax = plt.subplots(figsize=(10, 3.2))
     fig.patch.set_facecolor('#ffffff')
     ax.set_facecolor('#ffffff')
@@ -531,6 +537,7 @@ def draw_beam_visualizer(beam_length, support_type, point_loads, udl_loads):
 # ─────────────────────────────────────────────
 
 def plot_results_plotly(x, shear, moment, x_def, deflection):
+    """Build and return an interactive Plotly figure with SFD, BMD, and deflection subplots."""
     BLUE   = '#0071e3'
     RED    = '#ff3b30'
     GREEN  = '#34c759'
@@ -646,7 +653,7 @@ def generate_pdf(beam_length, support_type, E_GPa, I_cm4,
                  point_loads, udl_loads, R_A, R_B,
                  max_sf, max_bm, max_def, def_pos,
                  x, shear, moment, x_def, deflection):
-
+    """Generate and return the bytes of a PDF report containing results and diagrams."""
     # Build matplotlib figure for PDF (white, clean)
     BLUE, GREEN, ORANGE = '#0071e3', '#34c759', '#ff9500'
     fig_pdf, axes = plt.subplots(3, 1, figsize=(8, 10))
@@ -799,6 +806,7 @@ def generate_pdf(beam_length, support_type, E_GPa, I_cm4,
 # ─────────────────────────────────────────────
 
 def main():
+    """Entry point for the Streamlit app — renders sidebar, hero, and analysis output."""
     st.set_page_config(
         page_title="PyBeam — Beam Analysis",
         page_icon="⚗️",
