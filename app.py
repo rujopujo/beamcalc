@@ -5,7 +5,6 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-from matplotlib.patches import FancyArrow
 from sympy import symbols, integrate, lambdify, Piecewise, And
 from sympy import solve as sym_solve, symbols as sym_symbols
 import plotly.graph_objects as go
