@@ -465,7 +465,8 @@ def compute_deflection(beam_length: float, support_type: str, point_loads: list,
 #  BEAM VISUALIZER  (Matplotlib schematic)
 # ─────────────────────────────────────────────
 
-def draw_beam_visualizer(beam_length, support_type, point_loads, udl_loads):
+def draw_beam_visualizer(beam_length: float, support_type: str,
+                         point_loads: list, udl_loads: list) -> plt.Figure:
     """Render a Matplotlib schematic of the beam with supports and applied loads."""
     fig, ax = plt.subplots(figsize=(10, 3.2))
     fig.patch.set_facecolor('#ffffff')
@@ -560,7 +561,8 @@ def draw_beam_visualizer(beam_length, support_type, point_loads, udl_loads):
 #  PLOTLY INTERACTIVE CHARTS
 # ─────────────────────────────────────────────
 
-def plot_results_plotly(x, shear, moment, x_def, deflection):
+def plot_results_plotly(x: np.ndarray, shear: np.ndarray, moment: np.ndarray,
+                       x_def: np.ndarray, deflection: np.ndarray) -> go.Figure:
     """Build and return an interactive Plotly figure with SFD, BMD, and deflection subplots."""
     BLUE   = _CLR_BLUE
     RED    = _CLR_RED
