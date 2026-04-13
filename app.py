@@ -1,3 +1,6 @@
+import io
+import base64
+
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
@@ -7,7 +10,6 @@ from sympy import symbols, integrate, lambdify, Piecewise, And
 from sympy import solve as sym_solve, symbols as sym_symbols
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import io, base64
 from fpdf import FPDF
 
 # ─────────────────────────────────────────────
