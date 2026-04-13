@@ -334,7 +334,8 @@ def counter_js(values_dict):
 #  VALIDATION
 # ─────────────────────────────────────────────
 
-def validate_inputs(beam_length, E_GPa, I_cm4, point_loads, udl_loads):
+def validate_inputs(beam_length: float, E_GPa: float, I_cm4: float,
+                     point_loads: list, udl_loads: list) -> list[str]:
     """Return a list of error strings for any invalid beam configuration inputs."""
     errors = []
     if beam_length <= 0:   errors.append("Beam length must be greater than 0.")
@@ -357,7 +358,8 @@ def validate_inputs(beam_length, E_GPa, I_cm4, point_loads, udl_loads):
 #  REACTIONS
 # ─────────────────────────────────────────────
 
-def compute_reactions(beam_length, support_type, point_loads, udl_loads):
+def compute_reactions(beam_length: float, support_type: str,
+                      point_loads: list, udl_loads: list) -> tuple[float, float]:
     """Compute vertical support reactions using static equilibrium."""
     total_force, total_moment = 0.0, 0.0
     for pos, mag in point_loads:
