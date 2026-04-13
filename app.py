@@ -27,6 +27,8 @@ _CLR_GRAY   = '#6e6e73'
 _CLR_LGRAY  = '#d1d1d6'
 _CLR_TEXT   = '#1d1d1f'
 _CLR_GRID   = '#f0f0f0'
+_CLR_BEAM_FILL = '#e8f0fc'
+_CLR_WALL_FILL = '#e8e8ed'
 
 # ─────────────────────────────────────────────
 #  APPLE CSS
@@ -485,7 +487,7 @@ def draw_beam_visualizer(beam_length, support_type, point_loads, udl_loads):
     beam_rect = mpatches.FancyBboxPatch(
         (0, BEAM_Y - BEAM_H / 2), beam_length, BEAM_H,
         boxstyle="round,pad=0.02", linewidth=1.5,
-        edgecolor=BLUE, facecolor='#e8f0fc')
+        edgecolor=BLUE, facecolor=_CLR_BEAM_FILL)
     ax.add_patch(beam_rect)
 
     # ── Supports ──
@@ -506,7 +508,7 @@ def draw_beam_visualizer(beam_length, support_type, point_loads, udl_loads):
         wall = mpatches.FancyBboxPatch(
             (-0.45, -0.9), 0.42, 1.8,
             boxstyle="round,pad=0.02",
-            facecolor='#e8e8ed', edgecolor=GRAY, linewidth=1.2, zorder=3)
+            facecolor=_CLR_WALL_FILL, edgecolor=GRAY, linewidth=1.2, zorder=3)
         ax.add_patch(wall)
         for yy in np.arange(-0.75, 0.9, 0.22):
             ax.plot([-0.45, -0.03], [yy, yy + 0.18], color=LGRAY, linewidth=0.9, zorder=2)
