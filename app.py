@@ -12,6 +12,8 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from fpdf import FPDF
 
+_N_POINTS = 1000  # number of evaluation points along the beam
+
 # ─────────────────────────────────────────────
 #  APPLE CSS
 # ─────────────────────────────────────────────
@@ -376,7 +378,7 @@ def compute_reactions(beam_length, support_type, point_loads, udl_loads):
 #  SFD / BMD
 # ─────────────────────────────────────────────
 
-def compute_sfd(beam_length, support_type, point_loads, udl_loads, R_A, R_B, n=1000):
+def compute_sfd(beam_length, support_type, point_loads, udl_loads, R_A, R_B, n=_N_POINTS):
     """Return (x, shear) arrays representing the shear force diagram."""
     x = np.linspace(0, beam_length, n)
     shear = np.full(n, R_A)
@@ -404,7 +406,7 @@ def compute_bmd(x, shear):
 #  DEFLECTION (SymPy)
 # ─────────────────────────────────────────────
 
-def compute_deflection(beam_length, support_type, point_loads, udl_loads, R_A, E_Pa, I_m4, n=1000):
+def compute_deflection(beam_length, support_type, point_loads, udl_loads, R_A, E_Pa, I_m4, n=_N_POINTS):
     """Return (x, deflection) arrays using SymPy double-integration with boundary conditions."""
     xi = symbols('xi')
     EI = E_Pa * I_m4
