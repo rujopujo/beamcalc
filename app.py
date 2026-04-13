@@ -12,6 +12,7 @@ from fpdf import FPDF
 
 _VERSION = "1.0.0"
 _N_POINTS = 1000  # number of evaluation points along the beam
+_PDF_DPI = 150    # raster resolution for charts embedded in the PDF report
 
 # ── Shared color palette ──
 _CLR_BLUE   = '#0071e3'
@@ -698,7 +699,7 @@ def generate_pdf(beam_length, support_type, E_GPa, I_cm4,
     plt.tight_layout()
 
     buf = io.BytesIO()
-    fig_pdf.savefig(buf, format='png', dpi=150, bbox_inches='tight')
+    fig_pdf.savefig(buf, format='png', dpi=_PDF_DPI, bbox_inches='tight')
     buf.seek(0)
     plt.close(fig_pdf)
 
@@ -805,7 +806,7 @@ def generate_pdf(beam_length, support_type, E_GPa, I_cm4,
     pdf.cell(0, 8, 'Beam Schematic', ln=True)
     viz_fig = draw_beam_visualizer(beam_length, support_type, point_loads, udl_loads)
     viz_buf = io.BytesIO()
-    viz_fig.savefig(viz_buf, format='png', dpi=150, bbox_inches='tight')
+    viz_fig.savefig(viz_buf, format='png', dpi=_PDF_DPI, bbox_inches='tight')
     viz_buf.seek(0)
     plt.close(viz_fig)
     pdf.image(viz_buf, x=10, w=190)
