@@ -391,7 +391,9 @@ def compute_reactions(beam_length: float, support_type: str,
 #  SFD / BMD
 # ─────────────────────────────────────────────
 
-def compute_sfd(beam_length, support_type, point_loads, udl_loads, R_A, R_B, n=_N_POINTS):
+def compute_sfd(beam_length: float, support_type: str, point_loads: list,
+                udl_loads: list, R_A: float, R_B: float,
+                n: int = _N_POINTS) -> tuple[np.ndarray, np.ndarray]:
     """Return (x, shear) arrays representing the shear force diagram."""
     x = np.linspace(0, beam_length, n)
     shear = np.full(n, R_A)
@@ -407,7 +409,7 @@ def compute_sfd(beam_length, support_type, point_loads, udl_loads, R_A, R_B, n=_
     return x, shear
 
 
-def compute_bmd(x, shear):
+def compute_bmd(x: np.ndarray, shear: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """Return (x, moment) arrays by numerically integrating the shear force."""
     dx = x[1] - x[0]
     moment = np.cumsum(shear) * dx
@@ -419,7 +421,9 @@ def compute_bmd(x, shear):
 #  DEFLECTION (SymPy)
 # ─────────────────────────────────────────────
 
-def compute_deflection(beam_length, support_type, point_loads, udl_loads, R_A, E_Pa, I_m4, n=_N_POINTS):
+def compute_deflection(beam_length: float, support_type: str, point_loads: list,
+                       udl_loads: list, R_A: float, E_Pa: float, I_m4: float,
+                       n: int = _N_POINTS) -> tuple[np.ndarray, np.ndarray]:
     """Return (x, deflection) arrays using SymPy double-integration with boundary conditions."""
     xi = symbols('xi')
     EI = E_Pa * I_m4
