@@ -14,6 +14,7 @@ _VERSION = "1.0.0"
 _N_POINTS = 1000  # number of evaluation points along the beam
 _PDF_DPI = 150            # raster resolution for charts embedded in the PDF report
 _COUNTER_DURATION_MS = 1200  # duration of the count-up animation in milliseconds
+_FONT_FAMILY = '-apple-system, BlinkMacSystemFont, Inter, sans-serif'
 
 # ── Shared color palette ──
 _CLR_BLUE   = '#0071e3'
@@ -637,21 +638,20 @@ def plot_results_plotly(x, shear, moment, x_def, deflection):
 
     # ── Title styling ──
     for ann in fig.layout.annotations:
-        ann.update(font=dict(size=13, color=TEXT, family='-apple-system, BlinkMacSystemFont, Inter, sans-serif'),
+        ann.update(font=dict(size=13, color=TEXT, family=_FONT_FAMILY),
                    x=0, xanchor='left', xref='paper')
 
     fig.update_layout(
         height=760,
         paper_bgcolor='#ffffff',
         plot_bgcolor='#ffffff',
-        font=dict(family='-apple-system, BlinkMacSystemFont, Inter, sans-serif',
-                  color=TEXT, size=11),
+        font=dict(family=_FONT_FAMILY, color=TEXT, size=11),
         margin=dict(l=60, r=30, t=60, b=40),
         hovermode='x unified',
         hoverlabel=dict(bgcolor='rgba(255,255,255,0.95)',
                         bordercolor='rgba(0,0,0,0.1)',
                         font_size=12,
-                        font_family='-apple-system, BlinkMacSystemFont, Inter, sans-serif'),
+                        font_family=_FONT_FAMILY),
         legend=dict(
             orientation='v',
             x=1.01, y=1,
