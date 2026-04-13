@@ -716,7 +716,7 @@ def generate_pdf(beam_length, support_type, E_GPa, I_cm4,
     # Title
     pdf.set_font('Helvetica', 'B', 20)
     pdf.set_text_color(0, 113, 227)
-    pdf.cell(0, 12, 'PyBeam - Beam Analysis Report', ln=True)
+    pdf.cell(0, 12, 'BeamCalc - Beam Analysis Report', ln=True)
     pdf.set_draw_color(0, 113, 227)
     pdf.set_line_width(0.6)
     pdf.line(10, pdf.get_y(), 200, pdf.get_y())
@@ -1052,7 +1052,7 @@ def main():
     st.download_button(
         label="⬇ Download PDF Report",
         data=bytes(pdf_bytes),
-        file_name="PyBeam_Report.pdf",
+        file_name="BeamCalc_Report.pdf",
         mime="application/pdf")
     st.markdown('</div>', unsafe_allow_html=True)
 
