@@ -160,6 +160,18 @@ beamcalc/
 
 ---
 
+## References
+
+Open-access papers related to educational beam analysis, Python tooling, and symbolic computation used in solvers like BeamCalc:
+
+1. **Carella, A. R.** (2019). *BeamBending: a teaching aid for 1-D shear force and bending moment diagrams.* *Journal of Open Source Education*, 2(19), 65. [https://doi.org/10.21105/jose.00065](https://doi.org/10.21105/jose.00065) — [PDF](https://jose.theoj.org/papers/10.21105/jose.00065.pdf)
+
+2. **Bonanno, J.** (2021). *IndeterminateBeam: A Python package for solving 1D indeterminate beams.* *Journal of Open Source Education*, 4(40), 111. [https://doi.org/10.21105/jose.00111](https://doi.org/10.21105/jose.00111) — [PDF](https://jose.theoj.org/papers/10.21105/jose.00111.pdf)
+
+3. **Meurer, A., et al.** (2017). *SymPy: symbolic computing in Python.* *PeerJ Computer Science*, 3, e103. [https://doi.org/10.7717/peerj-cs.103](https://doi.org/10.7717/peerj-cs.103) — [Article (incl. PDF)](https://peerj.com/articles/cs-103/)
+
+---
+
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
