@@ -833,7 +833,7 @@ def generate_pdf(beam_length, support_type, E_GPa, I_cm4,
 def main():
     """Entry point for the Streamlit app — renders sidebar, hero, and analysis output."""
     st.set_page_config(
-        page_title="PyBeam — Beam Analysis",
+        page_title="BeamCalc — Beam Analysis",
         page_icon="⚗️",
         layout="wide",
         initial_sidebar_state="expanded"
